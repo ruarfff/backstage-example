@@ -45,8 +45,8 @@ techdocs:
 lighthouse:
   baseUrl: http://localhost:3003
 
+# see https://backstage.io/docs/tutorials/quickstart-app-auth to know more about enabling auth providers
 auth:
-  # see https://backstage.io/docs/tutorials/quickstart-app-auth to know more about enabling auth providers
   providers:
     github:
       development:
@@ -64,6 +64,12 @@ scaffolder:
 catalog:
   rules:
     - allow: [Component, API, Group, User, Template, Location]
+  processors:
+    githubOrg:
+      providers:
+        - target: https://github.com
+          token:
+            $env: GITHUB_TOKEN
   locations:
     # Backstage example components
     - type: url
